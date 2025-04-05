@@ -1,0 +1,15 @@
+services:
+  xdp-firewall:
+    build: .
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - SYS_PTRACE
+    volumes:
+      - /sys/kernel/debug:/sys/kernel/debug
+    ports:
+      - "80:80"
+      - "2222:22"
+      - "18080:8080"
+      - "9000:9000" 

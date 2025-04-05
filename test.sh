@@ -1,21 +1,19 @@
 #!/bin/bash
 
-URL="http://example.com"  # Replace with your HTTP service URL
 
 while true; do
-    # Check HTTP accessibility
-    if curl -s --connect-timeout 5 "$URL" > /dev/null; then
-        echo "HTTP accessible: $URL"
+    if curl -s --connect-timeout 0.5 "http://127.0.0.1:6943" > /dev/null; then
+        echo "6943 accessible: http://127.0.0.1:6943"
     else
-        echo "HTTP not accessible: $URL"
+        echo "6943 not accessible: http://127.0.0.1:6943"
     fi
 
-    # Check HTTPS accessibility
-    if curl -s --connect-timeout 5 "https://example.com" > /dev/null; then
-        echo "HTTPS accessible: https://example.com"
+    if curl -s --connect-timeout 0.5 "http://127.0.0.1:6942" > /dev/null; then
+        echo "6942 accessible: http://127.0.0.1:6942"
     else
-        echo "HTTPS not accessible: https://example.com"
+        echo "6942 not accessible: http://127.0.0.1:6942"
     fi
 
-    echo "---------------------------------------_"
+    echo "---------------------------------------"
+    sleep 0.5
 done

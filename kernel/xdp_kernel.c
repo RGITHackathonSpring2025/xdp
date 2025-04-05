@@ -51,9 +51,11 @@ int xdp_kernel(struct xdp_md *ctx)
 
         __u16 port = bpf_ntohs(tcph->dest);
 
-        if (port == 80) return XDP_PASS;
+        if (port == 6942) {
+            return XDP_DROP;
+        }
         else {
-            return XDP_ABORTED;
+            return XDP_PASS;
         }
     }
 

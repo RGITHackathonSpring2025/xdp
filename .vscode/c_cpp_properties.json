@@ -1,0 +1,12 @@
+{
+    "configurations": [{
+        "name": "Linux",
+        "includePath": ["/home/chell/FH/hacks/rgit-donstu-2025-spring/xdp/**", "/nix/store/iy7j3a1x1ym5sqrixx8kfq5942gd8i1b-libbpf-1.5.0/include", "/nix/store/js4nk0ps39v0km1c11sprg4wmb57l883-linux-headers-6.12.7/include"],
+        "defines": ["__TARGET_ARCH_x86_64"],
+        "compilerPath": "/nix/store/q87df3dw0x7r1k9gagir9a5sdi3gmw4a-clang-wrapper-19.1.7/bin/clang",
+        "cStandard": "c17",
+        "intelliSenseMode": "linux-clang-x64",
+        "compileCommands": "/home/chell/FH/hacks/rgit-donstu-2025-spring/xdp/compile_commands.json"
+    }],
+    "version": 4
+}

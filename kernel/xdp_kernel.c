@@ -49,12 +49,34 @@ int xdp_kernel(struct xdp_md *ctx)
             return XDP_DROP;
         }
 
+        __u16 sport = bpf_ntohs(tcph->source);
         __u16 port = bpf_ntohs(tcph->dest);
-
-        if (port == 6942) {
+        char *payload = (void *)tcph + tcph->doff * 4;
+        if (payload > (char *)data_end)
+        {
+            bpf_printk("Payload pointer is beyond data_end: %p > %p", payload, data_end);
             return XDP_DROP;
         }
-        else {
+
+        __u32 payload_size = (char *)data_end - payload;
+        if (iph->addrs.saddr == iph->addrs.daddr)
+        {
+            return XDP_PASS;
+        }
+        
+        if (port == 22) return XDP_PASS;
+
+        if (payload_size > 0)
+        {
+            bpf_printk("what %d:%d -> %d:%d", iph->addrs.saddr, sport, iph->addrs.daddr, port);
+        }
+
+        if (port != 80)
+        {
+            return XDP_DROP;
+        }
+        else
+        {
             return XDP_PASS;
         }
     }
